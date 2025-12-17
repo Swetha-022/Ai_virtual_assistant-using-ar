@@ -1,37 +1,23 @@
-// TEXT TO SPEECH
-function speak(text) {
-  const avatar = document.querySelector("#avatar");
+// Wait until the page loads
+window.addEventListener('load', () => {
+  const avatar = document.getElementById('avatar');
 
-  avatar.setAttribute("animation__talk",
-    "property: rotation; dir: alternate; dur: 400; loop: true; to: 0 15 0");
+  // Rotate avatar slowly
+  let angle = 0;
+  function rotateAvatar() {
+    angle += 0.2;
+    avatar.setAttribute('rotation', `0 ${angle} 0`);
+    requestAnimationFrame(rotateAvatar);
+  }
+  rotateAvatar();
 
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "en-US";
-  speechSynthesis.speak(utter);
+  console.log("AI AR Virtual Assistant Loaded!");
 
-  utter.onend = () => {
-    avatar.removeAttribute("animation__talk");
-  };
-}
-
-// SPEECH TO TEXT
-const recognition = new webkitSpeechRecognition();
-recognition.lang = "en-US";
-
-function startListening() {
-  recognition.start();
-}
-
-recognition.onresult = (event) => {
-  const text = event.results[0][0].transcript.toLowerCase();
-  console.log("User:", text);
-
-  let reply = "Sorry, I did not understand.";
-
-  if (text.includes("hello")) reply = "Hello! Nice to meet you.";
-  if (text.includes("name")) reply = "I am your AI AR virtual assistant.";
-  if (text.includes("help")) reply = "I can answer simple questions.";
-  if (text.includes("time")) reply = "Please check your phone time.";
-
-  speak(reply);
-};
+  // Optional: AI chat overlay
+  // You can expand this section to integrate actual AI APIs
+  const chatContainer = document.createElement('div');
+  chatContainer.id = 'chat-container';
+  chatContainer.innerHTML = "Hello! I am your AI Assistant.";
+  document.body.appendChild(chatContainer);
+  chatContainer.style.display = 'block';
+});
