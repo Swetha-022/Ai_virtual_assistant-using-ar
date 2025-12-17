@@ -1,57 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>AI AR Virtual Assistant</title>
+/* Make body and scene take full screen */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+}
 
-  <!-- A-Frame -->
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+a-scene {
+  width: 100%;
+  height: 100vh;
+}
 
-  <!-- MindAR -->
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar/dist/mindar-image-aframe.prod.js"></script>
-
-  <script src="script.js"></script>
-
-  <style>
-    body { margin: 0; overflow: hidden; }
-    button {
-      position: fixed;
-      bottom: 20px;
-      padding: 12px 16px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      background: #222;
-      color: white;
-    }
-    #mic { right: 20px; }
-    #speak { left: 20px; }
-  </style>
-</head>
-
-<body>
-
-<a-scene
-  mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/npm/mind-ar/examples/image-tracking/assets/card-example/card.mind;"
-  embedded
-  vr-mode-ui="enabled:false">
-
-  <a-camera></a-camera>
-
-  <a-entity mindar-image-target="targetIndex: 0">
-
-    <a-entity id="avatar"
-      gltf-model="avatar.glb"
-      scale="0.4 0.4 0.4"
-      position="0 0 0"
-      animation__idle="property: position; dir: alternate; dur: 2000; loop: true; to: 0 0.05 0">
-    </a-entity>
-
-  </a-entity>
-
-</a-scene>
-
-<button id="speak" onclick="speak('Hi! I am your AI AR virtual assistant.')">🔊 Speak</button>
-<button id="mic" onclick="startListening()">🎤 Talk</button>
-
-</body>
-</html>
+/* Optional overlay UI for AI chat (if needed) */
+#chat-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  font-size: 14px;
+  display: none; /* hidden by default */
+}
