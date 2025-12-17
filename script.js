@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
     requestAnimationFrame(rotateAvatar);
   }
   rotateAvatar();
-
   console.log("AI AR Virtual Assistant Loaded!");
 
   // Optional: AI chat overlay
