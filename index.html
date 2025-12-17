@@ -2,33 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ready Player Me + MindAR</title>
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+  <title>AI AR Virtual Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  
+  <!-- AR.js -->
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+  
+  <!-- Animation Mixer for .glb animations -->
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="margin: 0; overflow: hidden;">
+<body>
+  <!-- A-Frame Scene with AR -->
   <a-scene
-    mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/npm/mind-ar/examples/image-tracking/assets/card-example/card.mind; debugUIEnabled: true;"
     embedded
-    vr-mode-ui="enabled: false">
+    vr-mode-ui="enabled: false"
+    arjs="sourceType: webcam; debugUIEnabled: false;"
+    renderer="logarithmicDepthBuffer: true;">
 
-    <!-- Camera -->
-    <a-camera></a-camera>
-
-    <!-- MindAR target with avatar -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-entity
-        id="avatar"
-        gltf-model="https://models.readyplayer.me/69423adde17bf7b363ea0acd.glb"
-        crossorigin="anonymous"
-        scale="0.3 0.3 0.3"
-        position="0 -0.3 0"
-        rotation="0 180 0"
-        animation="property: position; dir: alternate; dur: 2000; loop: true; to: 0 -0.2 0"
-        animation-mixer>
-      </a-entity>
+    <!-- Auto-spawn AI avatar 2 meters in front of camera -->
+    <a-entity 
+      id="avatar"
+      gltf-model="url(avatar.glb)"
+      scale="0.5 0.5 0.5"
+      position="0 0 -2"
+      animation-mixer>
     </a-entity>
 
+    <!-- Optional: simple plane as ground -->
+    <a-plane position="0 -1 -2" rotation="-90 0 0" width="4" height="4" color="#ccc"></a-plane>
+
+    <!-- Camera -->
+    <a-camera position="0 1.6 0"></a-camera>
   </a-scene>
+
+  <script src="script.js"></script>
 </body>
 </html>
