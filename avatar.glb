@@ -1,1 +1,6 @@
-gltf-model="https://models.readyplayer.me/69423adde17bf7b363ea0acd.glb"
+<a-entity 
+    gltf-model="url(https://models.readyplayer.me/69423adde17bf7b363ea0acd.glb)" 
+    scale="0.5 0.5 0.5" 
+    position="0 0 -2" 
+    animation-mixer>
+</a-entity>
